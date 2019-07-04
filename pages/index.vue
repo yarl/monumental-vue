@@ -1,69 +1,85 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        monumental-vue
-      </h1>
-      <h2 class="subtitle">
-        My splendid Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
+  <div class="d-flex flex-column">
+    <div class="d-flex flex-column justify-content-center align-items-center hero">
+      <img class="hero__logo" src="~assets/wlm-logo.png" alt="Wiki Loves Monuments logo" />
+      <div class="hero__search mt-5">
+        <Search />
+      </div>
+    </div>
+    <div class="container mt-5">
+      <h3 v-if="!search.isBusy">
+        Results for
+        <em>{{ search.searchText }} ({{ search.results.length }})</em>
+      </h3>
+      <div class="d-flex flex-wrap results" v-if="!search.isBusy">
+        <div
+          class="mb-2 mr-2 card"
+          v-for="result in search.results"
+          :key="result.title"
+          style="width: 18rem;"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+          <div class="card-body">
+            <h5 class="card-title" v-html="result.titlesnippet"></h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ result.title }}</h6>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from "~/components/Logo.vue";
+import Search from "~/components/Search.vue";
+
+import { mapState } from "vuex";
 
 export default {
   components: {
-    Logo
+    Logo,
+    Search
+  },
+  computed: {
+    availableLocales() {
+      return this.$i18n.locales.filter(i => i.code);
+    },
+    ...mapState(["search"])
   }
-}
+};
 </script>
 
-<style>
+<style scoped>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
   color: #35495e;
-  letter-spacing: 1px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.hero {
+  position: relative;
+  height: 500px;
+  width: 100vw;
+  background: url(~assets/hero-background.jpg);
+  background-position: 50%;
+  background-size: cover;
+  color: white;
+}
+
+.hero:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  width: 100vw;
+  height: 100%;
+  opacity: 0.5;
+  background: linear-gradient(135deg, #c4c5a6 10%, #900 75%);
+}
+
+.hero__logo {
+  height: 77px;
+}
+
+.hero > * {
+  z-index: 2;
 }
 
 .links {
