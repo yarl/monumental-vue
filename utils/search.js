@@ -27,6 +27,9 @@ export function fullSearch(query) {
 }
 
 export function getEntities(ids = []) {
-  const url = wdk.getEntities(ids);
+  // console.log("getEntities", ids);
+  const url = wdk.getEntities({
+    ids
+  });
   return axios.get(url);
 }

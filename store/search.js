@@ -1,4 +1,4 @@
-import { fullSearch } from "../utils/search";
+import { fullSearch } from "~/utils/search";
 
 export const state = () => ({
   isBusy: false,
@@ -30,7 +30,7 @@ export const actions = {
         commit("SET_BUSY", false);
 
         const ids = response.data.query.search.map(result => result.title);
-        dispatch("data/addEntities", ids, { root: true });
+        dispatch("data/addEntitiesById", ids, { root: true });
       });
     } else {
       commit("SET_SEARCH_RESULTS");

@@ -21,12 +21,14 @@
           <img
             :src="`https://commons.wikimedia.org/wiki/Special:Redirect/file/${getProperty(result.title, 'P18')}`"
             class="card-img-top"
-            v-if="getProperty(result.title, 'P18')"
+            v-if="false && getProperty(result.title, 'P18')"
           />
           <div class="card-body">
             <h5 class="card-title" v-html="result.titlesnippet"></h5>
             <h6 class="card-subtitle mb-2 text-muted">
-              <nuxt-link :to="`monument/${result.title}`">{{result.title}}</nuxt-link>
+              <nuxt-link
+                :to="localePath({ name: 'monument-id', params: { id: result.title } })"
+              >{{result.title}}</nuxt-link>
             </h6>
           </div>
         </div>
@@ -50,11 +52,11 @@ export default {
   },
   methods: {
     getProperty(id, property) {
-      console.log("getProperty", id, property);
+      // console.log("getProperty", id, property);
       const entity = this.$store.state.data.entities[id];
 
       if (!entity || !entity.claims[property]) return false;
-      console.log(wdk.simplify.claim(entity.claims[property][0]));
+      // console.log(wdk.simplify.claim(entity.claims[property][0]));
       return wdk.simplify.claim(entity.claims[property][0]);
     }
   },
