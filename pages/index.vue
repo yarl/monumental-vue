@@ -9,7 +9,7 @@
     <div class="container mt-5">
       <h3 v-if="!search.isBusy">
         Results for
-        <em>{{ search.searchText }} ({{ search.results.length }})</em>
+        <em>{{ search.searchText || "?" }} ({{ search.results.length }})</em>
       </h3>
       <div class="d-flex flex-wrap results" v-if="!search.isBusy">
         <div
@@ -18,9 +18,16 @@
           :key="result.title"
           style="width: 18rem;"
         >
+          <img
+            :src="`https://commons.wikimedia.org/wiki/Special:Redirect/file/${getProperty(result.title, 'P18')}`"
+            class="card-img-top"
+            v-if="getProperty(result.title, 'P18')"
+          />
           <div class="card-body">
             <h5 class="card-title" v-html="result.titlesnippet"></h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ result.title }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <nuxt-link :to="`monument/${result.title}`">{{result.title}}</nuxt-link>
+            </h6>
           </div>
         </div>
       </div>
@@ -29,6 +36,8 @@
 </template>
 
 <script>
+import wdk from "wikidata-sdk";
+
 import Logo from "~/components/Logo.vue";
 import Search from "~/components/Search.vue";
 
@@ -39,10 +48,17 @@ export default {
     Logo,
     Search
   },
+  methods: {
+    getProperty(id, property) {
+      console.log("getProperty", id, property);
+      const entity = this.$store.state.data.entities[id];
+
+      if (!entity || !entity.claims[property]) return false;
+      console.log(wdk.simplify.claim(entity.claims[property][0]));
+      return wdk.simplify.claim(entity.claims[property][0]);
+    }
+  },
   computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter(i => i.code);
-    },
     ...mapState(["search"])
   }
 };

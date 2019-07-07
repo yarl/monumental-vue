@@ -1,5 +1,6 @@
 import axios from "axios";
 import jsonpAdapter from "axios-jsonp";
+import wdk from "wikidata-sdk";
 
 const endpoint = "https://www.wikidata.org/w/api.php";
 
@@ -9,7 +10,7 @@ export function fullSearch(query) {
     format: "json",
     list: "search",
     indexpageids: 1,
-    // utf8: 1,
+    utf8: 1,
     srsearch: query,
     srnamespace: "0",
     srlimit: "50",
@@ -23,4 +24,9 @@ export function fullSearch(query) {
     adapter: jsonpAdapter,
     callbackParamName: "c"
   });
+}
+
+export function getEntities(ids = []) {
+  const url = wdk.getEntities(ids);
+  return axios.get(url);
 }

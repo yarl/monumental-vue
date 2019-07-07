@@ -19,7 +19,8 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "nuxt": "^2.0.0",
     "nuxt-i18n": "^5.12.7",
-    "nuxt-leaflet": "^0.0.19"
+    "nuxt-leaflet": "^0.0.19",
+    "wikidata-sdk": "^7.0.7"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.27",

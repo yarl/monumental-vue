@@ -20,7 +20,7 @@ export const mutations = {
 };
 
 export const actions = {
-  searchText({ commit }, text) {
+  searchText({ commit, dispatch }, text) {
     commit("SET_SEARCH_TEXT", text);
 
     if (text) {
@@ -28,6 +28,9 @@ export const actions = {
       fullSearch(text).then(response => {
         commit("SET_SEARCH_RESULTS", response.data.query.search);
         commit("SET_BUSY", false);
+
+        const ids = response.data.query.search.map(result => result.title);
+        dispatch("data/addEntities", ids, { root: true });
       });
     } else {
       commit("SET_SEARCH_RESULTS");

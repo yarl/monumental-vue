@@ -10163,6 +10163,18 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
+wikibase-sdk@^7.0.7, wikibase-sdk@^7.0.8:
+  version "7.0.8"
+  resolved "https://registry.yarnpkg.com/wikibase-sdk/-/wikibase-sdk-7.0.8.tgz#2b869f1488eb8b11a98a92646926f9380ba4289f"
+  integrity sha512-fs85F7rnqUay73En0ThUCEgCoJjfidcHj+YJK80yjcrqK/DZa00L+DGwOJ2BMc7/ZFq3w3OguFlwCFiXZAlsbg==
+
+wikidata-sdk@^7.0.7:
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/wikidata-sdk/-/wikidata-sdk-7.0.7.tgz#fb4e8e2f8cb693f58d7c3acf57a9fab1c9c102f2"
+  integrity sha512-p3DIAimYU0Nn4pRrN939KJFSO1SGAcqiajU+Zrgow26qfVeetImqPF/bwiOYo64supci5tEsJrrEe44MRPJpIA==
+  dependencies:
+    wikibase-sdk "^7.0.7"
+
 wordwrap@~0.0.2:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
