@@ -1,25 +1,25 @@
 export default {
-  mode: 'universal',
+  mode: "universal",
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || "",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || ""
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: "#fff" },
   /*
    ** Global CSS
    */
@@ -27,28 +27,28 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ["~/plugins/vue-content-placeholders"],
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt',
-    'nuxt-leaflet',
+    "bootstrap-vue/nuxt",
+    "nuxt-leaflet",
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    "@nuxtjs/axios",
+    "@nuxtjs/pwa",
     [
-      'nuxt-i18n',
+      "nuxt-i18n",
       {
         locales: [
-          { code: 'en', iso: 'en-US', name: 'English', file: 'en-US.js' },
-          { code: 'pl', iso: 'pl-PL', name: 'Polski', file: 'pl-PL.js' }
+          { code: "en", iso: "en-US", name: "English", file: "en-US.js" },
+          { code: "pl", iso: "pl-PL", name: "Polski", file: "pl-PL.js" }
         ],
-        defaultLocale: 'en',
+        defaultLocale: "en",
         // differentDomains: true,
         lazy: true,
-        langDir: 'lang/'
+        langDir: "lang/"
       }
     ]
   ],
@@ -66,4 +66,4 @@ export default {
      */
     extend(config, ctx) {}
   }
-}
+};

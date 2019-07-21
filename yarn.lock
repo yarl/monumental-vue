@@ -9841,6 +9841,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
 
+vue-content-placeholders@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/vue-content-placeholders/-/vue-content-placeholders-0.2.1.tgz#5876bda4577c80ff6d396fb33b2dbbf8b8cc140f"
+  integrity sha512-Q+HPjuY98R0fLQ45eOOCYeMY7vpjU1H/Qqs0ptdBI6xe3nDDsPE4r/kN5YA9rVxQFP/PKhG5qQR4rqy02xPabw==
+
 vue-functional-data-merge@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-3.1.0.tgz#08a7797583b7f35680587f8a1d51d729aa1dc657"
@@ -10163,7 +10168,7 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
-wikibase-sdk@^7.0.7, wikibase-sdk@^7.0.8:
+wikibase-sdk@^7.0.7:
   version "7.0.8"
   resolved "https://registry.yarnpkg.com/wikibase-sdk/-/wikibase-sdk-7.0.8.tgz#2b869f1488eb8b11a98a92646926f9380ba4289f"
   integrity sha512-fs85F7rnqUay73En0ThUCEgCoJjfidcHj+YJK80yjcrqK/DZa00L+DGwOJ2BMc7/ZFq3w3OguFlwCFiXZAlsbg==

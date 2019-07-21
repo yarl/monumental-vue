@@ -19,7 +19,7 @@ import { mapMutations } from "vuex";
 export default {
   data: function() {
     return {
-      text: ""
+      text: "bazylika kraków"
     };
   },
   methods: {

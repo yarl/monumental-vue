@@ -6,12 +6,12 @@
         <Search />
       </div>
     </div>
-    <div class="container mt-5">
-      <h3 v-if="!search.isBusy">
+    <div class="container mt-5" v-if="!search.isBusy">
+      <h3>
         Results for
         <em>{{ search.searchText || "?" }} ({{ search.results.length }})</em>
       </h3>
-      <div class="d-flex flex-wrap results" v-if="!search.isBusy">
+      <div class="d-flex flex-wrap results">
         <div
           class="mb-2 mr-2 card"
           v-for="result in search.results"
@@ -33,6 +33,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="container mt-5" v-else>
+      <h4>Searching...</h4>
     </div>
   </div>
 </template>

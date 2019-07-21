@@ -1,6 +1,6 @@
 import axios from "axios";
 import jsonpAdapter from "axios-jsonp";
-import wdk from "wikidata-sdk";
+import { getEntities } from "wikidata-sdk";
 
 const endpoint = "https://www.wikidata.org/w/api.php";
 
@@ -26,10 +26,17 @@ export function fullSearch(query) {
   });
 }
 
-export function getEntities(ids = []) {
-  // console.log("getEntities", ids);
-  const url = wdk.getEntities({
-    ids
+export function fetchEntities(ids = []) {
+  const requestsNumber = Math.ceil(ids.length / 50);
+
+  const urls = new Array(requestsNumber).fill().map((value, index) => {
+    const startIndex = index * 30;
+    const list = ids.slice(startIndex, startIndex + 49);
+    return getEntities({ ids: list, props: ["claims", "labels"] });
   });
-  return axios.get(url);
+
+  return Promise.all(urls.map(url => axios.get(url))).then(responses => {
+    const data = responses.map(response => response.data.entities);
+    return { data: { entities: Object.assign({}, ...data) } };
+  });
 }
