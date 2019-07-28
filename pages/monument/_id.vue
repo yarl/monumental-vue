@@ -3,6 +3,7 @@
     <div v-if="monument">
       <h1>{{ label }}</h1>
       <h4>{{ id }}</h4>
+      <MainImage :id="id" prop="P18"></MainImage>
       <div class="mt-4">
         <h4 class="mt-4">General data</h4>
         <Property :id="id" prop="P31"></Property>
@@ -30,11 +31,14 @@
 
 <script>
 import { fetchEntities } from "~/utils/search";
+
 import Property from "~/components/Property";
+import MainImage from "~/components/MainImage";
 
 export default {
   components: {
-    Property
+    Property,
+    MainImage
   },
   computed: {
     monument() {
