@@ -25,9 +25,7 @@ export default {
   methods: {
     search(e) {
       const { text } = this;
-      const lang = this.$i18n.locale;
-      console.log(lang);
-      this.$store.dispatch("search/searchText", { text, lang });
+      this.$store.dispatch("search/searchText", text);
       e.preventDefault();
     }
   }
@@ -48,4 +46,3 @@ export default {
   color: #888;
 }
 </style>
-

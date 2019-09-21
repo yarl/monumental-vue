@@ -1,41 +1,51 @@
 <template>
   <div class="d-flex flex-column">
-    <div class="d-flex flex-column justify-content-center align-items-center hero">
+    <div
+      class="d-flex flex-column justify-content-center align-items-center hero"
+      :class="{ 'hero--short': !search.isPristine }"
+    >
       <img class="hero__logo" src="~assets/wlm-logo.png" alt="Wiki Loves Monuments logo" />
-      <div class="hero__search mt-5">
+      <div class="hero__search">
         <Search />
       </div>
     </div>
-    <div class="container mt-5" v-if="!search.isBusy">
-      <h3>
-        Results for
-        <em>{{ search.searchText || "?" }} ({{ search.results.length }})</em>
-      </h3>
-      <div class="d-flex flex-wrap results">
-        <div
-          class="mb-2 mr-2 card"
-          v-for="result in search.results"
-          :key="result.title"
-          style="width: 18rem;"
-        >
-          <img
-            :src="`https://commons.wikimedia.org/wiki/Special:Redirect/file/${getProperty(result.title, 'P18')}`"
-            class="card-img-top"
-            v-if="false && getProperty(result.title, 'P18')"
-          />
-          <div class="card-body">
-            <h5 class="card-title" v-html="result.titlesnippet"></h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-              <nuxt-link
-                :to="localePath({ name: 'monument-id', params: { id: result.title } })"
-              >{{result.title}}</nuxt-link>
-            </h6>
+    <div class="container mt-5">
+      <div v-if="search.isPristine">Pusto</div>
+      <div v-else>
+        <div v-if="!search.isBusy">
+          <h3>
+            Results for
+            <em>{{ search.searchText || "?" }} ({{ search.results.length }})</em>
+          </h3>
+          <div class="d-flex flex-wrap results">
+            <div
+              class="mb-2 mr-2 card"
+              v-for="result in search.results"
+              :key="result.title"
+              style="width: 18rem;"
+            >
+              <img
+                :src="`https://commons.wikimedia.org/wiki/Special:Redirect/file/${getProperty(result.title, 'P18')}`"
+                class="card-img-top"
+                v-if="false && getProperty(result.title, 'P18')"
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <nuxt-link
+                    :to="localePath({ name: 'monument-id', params: { id: result.title } })"
+                  >
+                    <span v-html="result.titlesnippet"></span>
+                  </nuxt-link>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{result.title}}</h6>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="container mt-5" v-else>
+          <h4>Searching...</h4>
+        </div>
       </div>
-    </div>
-    <div class="container mt-5" v-else>
-      <h4>Searching...</h4>
     </div>
   </div>
 </template>
@@ -82,6 +92,20 @@ export default {
   background-position: 50%;
   background-size: cover;
   color: white;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.hero--short {
+  height: 220px;
+}
+
+.hero--short .hero__logo {
+  height: 40px;
+}
+
+.hero--short .hero__search {
+  margin-top: 1rem;
 }
 
 .hero:before {
@@ -97,6 +121,10 @@ export default {
 
 .hero__logo {
   height: 77px;
+}
+
+.hero__search {
+  margin-top: 3rem;
 }
 
 .hero > * {

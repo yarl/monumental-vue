@@ -1,6 +1,7 @@
 import { fullSearch } from "~/utils/search";
 
 export const state = () => ({
+  isPristine: true,
   isBusy: false,
   isError: false,
   searchText: "",
@@ -9,6 +10,7 @@ export const state = () => ({
 
 export const mutations = {
   SET_BUSY(state, isBusy = true) {
+    state.isPristine = false;
     state.isBusy = isBusy;
   },
   SET_SEARCH_TEXT(state, text = "") {
@@ -20,12 +22,12 @@ export const mutations = {
 };
 
 export const actions = {
-  searchText({ commit, dispatch }, text) {
+  searchText({ commit, dispatch }, { text, lang }) {
     commit("SET_SEARCH_TEXT", text);
 
     if (text) {
       commit("SET_BUSY", true);
-      fullSearch(text).then(response => {
+      fullSearch(text, lang).then(response => {
         commit("SET_SEARCH_RESULTS", response.data.query.search);
         commit("SET_BUSY", false);
 

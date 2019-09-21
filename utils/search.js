@@ -4,7 +4,7 @@ import { getEntities } from "wikidata-sdk";
 
 const endpoint = "https://www.wikidata.org/w/api.php";
 
-export function fullSearch(query) {
+export function fullSearch(query = "", lang = "") {
   const params = {
     action: "query",
     format: "json",
@@ -15,9 +15,10 @@ export function fullSearch(query) {
     srnamespace: "0",
     srlimit: "50",
     srinfo: "totalhits|suggestion|rewrittenquery",
-    srprop: "timestamp|titlesnippet|extensiondata",
+    srprop: "titlesnippet|extensiondata",
     srinterwiki: 1,
-    srenablerewrites: 1
+    srenablerewrites: 1,
+    uselang: lang
   };
   return axios.get(endpoint, {
     params,

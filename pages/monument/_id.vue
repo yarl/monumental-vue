@@ -5,23 +5,23 @@
       <h4>{{ id }}</h4>
       <MainImage :id="id" prop="P18"></MainImage>
       <div class="mt-4">
-        <h4 class="mt-4">General data</h4>
+        <h4 class="mt-4">{{$t('monument_general_data')}}</h4>
         <Property :id="id" prop="P31"></Property>
         <Property :id="id" prop="P527" link="true"></Property>
         <Property :id="id" prop="P361" link="true"></Property>
 
-        <h4 class="mt-4">Address details</h4>
+        <h4 class="mt-4">{{$t('monument_address_details')}}</h4>
         <Property :id="id" prop="P131"></Property>
         <Property :id="id" prop="P6375"></Property>
         <Property :id="id" prop="P276"></Property>
         <Property :id="id" prop="P625"></Property>
 
-        <h4 class="mt-4">Technical data</h4>
+        <h4 class="mt-4">{{$t('monument_technical_details')}}</h4>
         <Property :id="id" prop="P2048"></Property>
         <Property :id="id" prop="P2046"></Property>
         <Property :id="id" prop="P1101"></Property>
 
-        <h4 class="mt-4">Heritage</h4>
+        <h4 class="mt-4">{{$t('monument_heritage')}}</h4>
         <Property :id="id" prop="P1435"></Property>
       </div>
     </div>

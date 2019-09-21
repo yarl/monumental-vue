@@ -15,11 +15,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav flex-fill">
-        <li class="nav-item active">
-          <nuxt-link class="nav-link" :to="localePath('index')">Home</nuxt-link>
-        </li>
         <li class="nav-item mr-auto">
-          <a class="nav-link">Link</a>
+          <nuxt-link class="nav-link" :to="localePath('map')">Map</nuxt-link>
         </li>
 
         <li class="d-flex align-items-center nav-item">

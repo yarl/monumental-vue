@@ -27,7 +27,7 @@ export default {
       const values = simplify.propertyClaims(entity.claims[this.prop], params);
       if (values[0] && values[0].type === "commonsMedia") {
         const name = encodeURIComponent(values[0].value);
-        return `https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/${name}&width=300&height=300`;
+        return `https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/${name}&width=500&height=500`;
       }
 
       return false;
@@ -40,8 +40,11 @@ export default {
 .img-thumbnail {
   position: relative;
   overflow: hidden;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
+
+  border: 0;
+  border-radius: 0;
 }
 
 .img-main {
@@ -52,8 +55,8 @@ export default {
   position: absolute;
   filter: blur(10px);
   opacity: 0.5;
-  width: 300px;
-  height: 300px;
+  width: 500px;
+  height: 500px;
 }
 </style>
 
